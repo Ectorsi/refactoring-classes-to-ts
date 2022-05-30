@@ -5,11 +5,20 @@ import * as S from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
 
-const ModalAddFood = ({ isOpen, setIsOpen, handleAddFood }) => {
+import { Food } from '../../types';
+import { FormHandles } from '@unform/core';
 
-  const formRef = useRef(null);
+type ModalAddFoodProps = {
+  isOpen: boolean,
+  setIsOpen: () => void,
+  handleAddFood: (data: Food) => void
+}
 
-  const handleSubmit = data => {
+const ModalAddFood = ({ isOpen, setIsOpen, handleAddFood }: ModalAddFoodProps) => {
+
+  const formRef = useRef<FormHandles>(null);
+
+  const handleSubmit = (data: Food) => {
     handleAddFood(data);
     setIsOpen();
   };

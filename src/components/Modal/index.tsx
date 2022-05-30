@@ -6,7 +6,7 @@ type ModalProps = {
   setIsOpen: () => void,
 }
 
-const Modal = ({ children, isOpen, setIsOpen }: ModalProps) => {
+const Modal = ({ children, isOpen, setIsOpen}: ModalProps) => {
 
   return (
     <ReactModal

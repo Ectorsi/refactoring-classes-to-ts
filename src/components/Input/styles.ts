@@ -1,6 +1,14 @@
 import styled, { css } from 'styled-components';
+import { InputProps } from '.';
 
-export const Container = styled.div`
+type IconProps = { size: number } & Pick<InputProps, 'icon'>;
+
+type ContainerProps = {
+  isFocused: boolean;
+  isFilled: boolean;
+};
+
+export const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
 
@@ -48,4 +56,11 @@ export const Container = styled.div`
   svg {
     margin-right: 16px;
   }
+`;
+
+export const Icon = styled.div<IconProps>`
+  ${({ size }) => css`
+    width: ${size}px;
+    height: ${size}px;
+  `}
 `;

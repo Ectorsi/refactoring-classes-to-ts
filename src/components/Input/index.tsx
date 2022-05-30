@@ -1,4 +1,4 @@
-import {
+import React, {
   useEffect,
   useRef,
   useState,
@@ -7,10 +7,19 @@ import {
 
 import { useField } from '@unform/core';
 
-import { Container } from './styles';
+import * as S from './styles';
 
-const Input = ({ name, icon: Icon, ...rest }) => {
-  const inputRef = useRef(null);
+export type InputProps = {
+  name: string;
+  icon?: React.ReactNode;
+  rest?: React.InputHTMLAttributes<HTMLInputElement>;
+  isFilled?: boolean;
+  isFocused?: boolean;
+  placeholder?: string;
+};
+
+const Input = ({ name, icon: Icon, placeholder, ...rest }: InputProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -36,17 +45,18 @@ const Input = ({ name, icon: Icon, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Container isFilled={isFilled} isFocused={isFocused}>
-      {Icon && <Icon size={20} />}
+    <S.Container isFilled={isFilled} isFocused={isFocused}>
+      {Icon && <S.Icon size={20} />}
 
       <input
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        defaultValue={defaultValue}
         ref={inputRef}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
         {...rest}
       />
-    </Container>
+    </S.Container>
   );
 };
 

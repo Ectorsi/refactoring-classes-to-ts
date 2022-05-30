@@ -4,20 +4,29 @@ import { FiCheckSquare } from 'react-icons/fi';
 import * as S from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
+import { Food } from '../../types';
+
+type ModalEditFoodProps = {
+  isOpen: boolean;
+  setIsOpen: () => void;
+  editingFood: Food;
+  handleUpdateFood: (food: Food) => void;
+};
 
 const ModalEditFood = (
   { isOpen,
     setIsOpen,
     handleUpdateFood,
-    editingFood
-  }) => {
+    editingFood,
+  }: ModalEditFoodProps) => {
 
   const formRef = useRef(null);
 
-  const handleSubmit = (data) => {
+  const handleSubmit = (data: Food) => {
     handleUpdateFood(data);
     setIsOpen();
   };
+  console.log('abriu aqui');
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
